@@ -1,0 +1,122 @@
+name: Continous Integration Demo
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main, feature/branch ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      - id: checkout
+        uses: actions/checkout@v3
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+    outputs:
+      tag: ${{ steps.checkout.outputs.tag }}    
+  get-the-files:
+    needs:
+      - build
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: running a custom scrip
+        run: |
+          ls -al
+#       - name: Log in with Azure action
+#         uses: azure/login@v1
+#         with:
+#           creds: '${{ secrets.AZURE_CREDENTIALS }}'
+#       - uses: azure/aks-set-context@v1
+#         with:
+#           creds: '${{ secrets.AZURE_CREDENTIALS }}'
+#           cluster-name: githubactionaks
+#           resource-group: githubRGACTION
+
+#       - run: |
+#           kubectl create namespace githubrg
+      
+#       #      - name: deploy app
+#       - run: |
+#           kubectl apply -f .
+#       - name: RUN AZ COMMnd
+#         run: |
+#           az account show
+#           az group list
+      # Runs a set of commands using the runners shell
+  get-the-multilinetask:
+    needs:
+      - build
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: get the depependency
+        run: ${{ needs.build.outputs.tag}}
+      - id: checkout
+        uses: actions/checkout@v3
+
+      - name: Run a multi-line script
+        if: always()
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+      - name: check java version
+        run: java -version
+      - name: gradle build
+
+        run: gradle build
+#       - name: gradlew build
+#         run: ./gradlew build
+      - name: docker version
+        run: |
+          docker -v
+          docker
+          docker images -a
+      - name: docker build
+        run: |
+          docker build . -t shan0809/demo-kotlin2.0
+          docker images -a
+#      - name: docker login
+#        run: docker login -u ${{ secrets.dockerhubusername }} -p ${{ secrets.dockerhubpassword }}
+#      - name: docker image push
+#        run: docker push shan0809/demo-kotlin2.0
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.dockerhubusername }}
+          password: ${{ secrets.dockerhubpassword }}
+          
+      - name: use github_env var
+        run: |
+           echo "SHORTEN_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+           echo $GITHUB_ENV
+      - name: docker build using github_env
+        run: |
+           docker build -t shan0809/$SHORTEN_SHA .
+           docker push shan0809/$SHORTEN_SHA
+#      - name: docker image tag
+#        env:
+#          IMAGE_TAG: ${{ github.sha }}
+#        run: |
+#          docker build -t shan0809/${GITHUB_SHA::8} .
+#          docker push shan0809/${GITHUB_SHA::8}
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: shan0809/demo-kotlin2.0
