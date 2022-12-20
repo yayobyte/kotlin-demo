@@ -103,10 +103,10 @@ jobs:
 #          username: ${{ secrets.dockerhubusername }}
 #          password: ${{ secrets.dockerhubpassword }}
 #
-#      - name: use github_env var
-#        run: |
-#           echo "SHORTEN_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
-#           echo $GITHUB_ENV
+      - name: use github_env var
+        run: |
+           echo "SHORTEN_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+           echo $GITHUB_ENV
 #      - name: docker build using github_env
 #        run: |
 #           docker build -t shan0809/$SHORTEN_SHA .
