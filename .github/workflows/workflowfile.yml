@@ -25,6 +25,12 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
+
+      - name: Login with azure action
+        uses: azure/login@v1
+        with:
+          creds: '${{ secret.AZURE_CREDENTIALS }}'
+
       - name: RUN AZ COMMnd
         run: |
           az account show
