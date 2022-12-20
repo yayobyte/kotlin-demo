@@ -25,6 +25,10 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
+      - name: RUN AZ COMMnd
+        run: |
+          az account show
+          az group list
 #    outputs:
 #      tag: ${{ steps.checkout.outputs.tag }}
 #  get-the-files:
@@ -52,10 +56,6 @@ jobs:
 ##       #      - name: deploy app
 ##       - run: |
 ##           kubectl apply -f .
-##       - name: RUN AZ COMMnd
-##         run: |
-##           az account show
-##           az group list
 #      # Runs a set of commands using the runners shell
   get-the-multiline-task:
     needs:
@@ -103,10 +103,10 @@ jobs:
 #          username: ${{ secrets.dockerhubusername }}
 #          password: ${{ secrets.dockerhubpassword }}
 #
-      - name: use github_env var
-        run: |
-           echo "SHORTEN_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
-           echo $GITHUB_ENV
+#      - name: use github_env var
+#        run: |
+#           echo "SHORTEN_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+#           echo $GITHUB_ENV
 #      - name: docker build using github_env
 #        run: |
 #           docker build -t shan0809/$SHORTEN_SHA .
