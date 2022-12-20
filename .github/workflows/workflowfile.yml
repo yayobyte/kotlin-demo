@@ -82,11 +82,11 @@ jobs:
 
 #       - name: gradlew build
 #         run: ./gradlew build
-#      - name: docker version
-#        run: |
-#          docker -v
-#          docker
-#          docker images -a
+      - name: docker version
+        run: |
+          docker -v
+          docker
+          docker images -a
 #      - name: docker build
 #        run: |
 #          docker build . -t shan0809/demo-kotlin2.0
