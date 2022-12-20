@@ -25,9 +25,6 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
-      - name: Check the files
-        run: |
-          ls -al
 #    outputs:
 #      tag: ${{ steps.checkout.outputs.tag }}
 #  get-the-files:
@@ -60,29 +57,31 @@ jobs:
 ##           az account show
 ##           az group list
 #      # Runs a set of commands using the runners shell
-#  get-the-multilinetask:
-#    needs:
-#      - build
-#
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: get the depependency
-#        run: ${{ needs.build.outputs.tag}}
-#      - id: checkout
-#        uses: actions/checkout@v3
-#
-#      - name: Run a multi-line script
-#        if: always()
-#        run: |
-#          echo Add other actions to build,
-#          echo test, and deploy your project.
-#      - name: check java version
-#        run: java -version
-#      - name: gradle build
-#
-#        run: gradle build
-##       - name: gradlew build
-##         run: ./gradlew build
+  get-the-multiline-task:
+    needs:
+      - build
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: get the dependency
+        run: ${{ needs.build.outputs.tag}}
+      - id: checkout
+        uses: actions/checkout@v3
+
+      - name: Run a multi-line script
+        if: always()
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+
+      - name: check java version
+        run: java -version
+
+      - name: gradle build
+        run: gradle build
+
+#       - name: gradlew build
+#         run: ./gradlew build
 #      - name: docker version
 #        run: |
 #          docker -v
