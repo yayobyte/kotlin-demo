@@ -87,12 +87,12 @@ jobs:
           docker -v
           docker
           docker images -a
-#      - name: docker build
-#        run: |
-#          docker build . -t shan0809/demo-kotlin2.0
-#          docker images -a
-##      - name: docker login
-##        run: docker login -u ${{ secrets.dockerhubusername }} -p ${{ secrets.dockerhubpassword }}
+      - name: docker build
+        run: |
+          docker build . -t demo-kotlin2.0
+          docker images -a
+#      - name: docker login
+#        run: docker login -u ${{ secrets.dockerhubusername }} -p ${{ secrets.dockerhubpassword }}
 ##      - name: docker image push
 ##        run: docker push shan0809/demo-kotlin2.0
 #
