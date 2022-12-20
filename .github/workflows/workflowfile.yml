@@ -27,7 +27,7 @@ jobs:
         run: echo Hello, world!
 
       - name: Login with azure action
-        uses: Azure/actions/login@V1
+        uses: azure/login@v1
         with:
           creds: '${{ secrets.AZURE_CREDENTIALS }}'
 
