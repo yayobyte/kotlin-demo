@@ -29,7 +29,7 @@ jobs:
       - name: Login with azure action
         uses: azure/login@v1
         with:
-          creds: '${{ secrets.AZURE_CREDENTIALS }}'
+          credentials: '${{ secrets.AZURE_CREDENTIALS }}'
 
       - name: RUN AZ COMMnd
         run: |
