@@ -80,8 +80,8 @@ jobs:
       - name: gradle build
         run: gradle build
 
-#       - name: gradlew build
-#         run: ./gradlew build
+      - name: gradlew build
+        run: ./gradlew build
       - name: docker version
         run: |
           docker -v
