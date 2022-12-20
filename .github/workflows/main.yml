@@ -1,4 +1,4 @@
-name: Continous Integration Demo
+name: Continous Integration Demo First Step
 
 # Controls when the workflow will run
 on:
