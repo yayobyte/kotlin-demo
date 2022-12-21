@@ -30,12 +30,12 @@ jobs:
       - name: Install Terraform
         run: |
           # Download and install the latest version of Terraform
-          curl -SL https://releases.hashicorp.com/terraform/1.2.5/terraform_1.2.5_linux_amd64.zip --output terraform.zip
+          curl -SL https://releases.hashicorp.com/terraform/1.2.5/terraform_1.2.5_linux_amd64.zip --output terraform_linux.zip
           ls -a
-          unzip -o terraform.zip
-          mv terraform /usr/local/bin/
+          unzip -o terraform_linux.zip
+          mv terraform_linux /usr/local/bin/
           terraform --version
-          rm -r terraform.zip
+          rm -r terraform_linux.zip
 
       - name: Install tflink
         run: |
@@ -46,31 +46,31 @@ jobs:
           rm tflink_linux_amd64.zip
 
 
-#      - name: 'Terraform Format'
-#        uses: hashicorp/terraform-github-actions@master
-#        with:
-#         tf_actions_version: 0.14.8
-#         tf_actions_subcommand: 'fmt'
-#         tf_actions_working_dir: "./terraform"
-#      - name: 'Terraform Init'
-#        uses: hashicorp/terraform-github-actions@master
-#        with:
-#            tf_actions_version: 0.14.8
-#            tf_actions_subcommand: 'init'
-#            tf_actions_working_dir: "./terraform"
-#      - name: 'Terraform Plan'
-#        uses: hashicorp/terraform-github-actions@master
-#        with:
-#            tf_actions_version: 0.14.8
-#            tf_actions_subcommand: 'plan'
-#            tf_actions_working_dir: "./terraform"
-#      - name: 'Terraform Apply'
-#        if: github.ref == 'refs/heads/main'
-#        uses: hashicorp/terraform-github-actions@master
-#        with:
-#          tf_actions_version: 0.14.8
-#          tf_actions_subcommand: 'apply'
-#          tf_actions_working_dir: "./terraform"
+      - name: 'Terraform Format'
+        uses: hashicorp/terraform-github-actions@master
+        with:
+         tf_actions_version: 0.14.8
+         tf_actions_subcommand: 'fmt'
+         tf_actions_working_dir: "./terraform"
+      - name: 'Terraform Init'
+        uses: hashicorp/terraform-github-actions@master
+        with:
+            tf_actions_version: 0.14.8
+            tf_actions_subcommand: 'init'
+            tf_actions_working_dir: "./terraform"
+      - name: 'Terraform Plan'
+        uses: hashicorp/terraform-github-actions@master
+        with:
+            tf_actions_version: 0.14.8
+            tf_actions_subcommand: 'plan'
+            tf_actions_working_dir: "./terraform"
+      - name: 'Terraform Apply'
+        if: github.ref == 'refs/heads/main'
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: 0.14.8
+          tf_actions_subcommand: 'apply'
+          tf_actions_working_dir: "./terraform"
 #      - name: 'Terraform Destroy'
 #        if: github.ref == 'refs/heads/main'
 #        uses: hashicorp/terraform-github-actions@master
