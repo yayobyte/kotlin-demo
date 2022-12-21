@@ -37,10 +37,8 @@ jobs:
           rm terraform_linux.zip
 
       - name: Install tflint
-      - run: | 
+        run: | 
           curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
-      - run: tflint
-
 
       - name: 'Terraform Format'
         uses: hashicorp/terraform-github-actions@master
