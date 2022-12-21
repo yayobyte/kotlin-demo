@@ -30,10 +30,11 @@ jobs:
       - name: Install Terraform
         run: |
           # Download and install the latest version of Terraform
-          wget https://releases.hashicorp.com/terraform/1.2.5/terraform_1.2.5_linux_amd64.zip
-          unzip -o terraform_1.2.5_linux_amd64.zip
+          wget https://releases.hashicorp.com/terraform/1.2.5/terraform_1.2.5_linux_amd64.zip --output terraform.zip
+          unzip -o terraform.zip
           mv terraform /usr/local/bin/
-          rm terraform_1.2.5_linux_amd64.zip
+          terraform --version
+          rm  terraform.zip
 
       - name: Install tflink
         run: |
