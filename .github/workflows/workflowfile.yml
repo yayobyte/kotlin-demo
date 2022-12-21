@@ -46,9 +46,11 @@ jobs:
 
       - name: get the dependency
         run: ${{ needs.build.outputs.tag}}
+        catch:
+          - error
 
       - name: Run a multi-line script
-        if: always()
+        if: success()
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
