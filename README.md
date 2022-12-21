@@ -58,4 +58,14 @@ Change the workflow file to consume the `secret credentials` and connect to `azu
           creds: '{"clientId":"${{ secrets.CLIENT_ID }}","clientSecret":"${{ secrets.CLIENT_SECRET }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.TENANT_ID }}"}'
           allow-no-subscriptions: true
 
-Go to `azure` and create a new `kubernetes` cluster and then you can use the command line to connect to the cluster
+Go to `azure` and create a new `kubernetes` cluster, and then you can use the command line to connect to the cluster
+
+Next, let's configure in the workflow the connection to the cluster:
+
+      - name: Connect to kubernetes cluster
+        uses: azure/aks-set-context@v1
+        with:
+          creds: '{"clientId":"${{ secrets.CLIENT_ID }}","clientSecret":"${{ secrets.CLIENT_SECRET }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.TENANT_ID }}"}'
+          cluster-name: githubactionskube
+          resource-group: default_resource_group
+
