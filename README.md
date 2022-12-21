@@ -69,3 +69,12 @@ Next, let's configure in the workflow the connection to the cluster:
           cluster-name: githubactionskube
           resource-group: default_resource_group
 
+Next let's create a new kubernetes namespace 
+
+    - run: |
+      kubectl create namespace githubrg
+
+You can check if the name space was created by this instruction in the azure console
+
+> kubectl get ns
+

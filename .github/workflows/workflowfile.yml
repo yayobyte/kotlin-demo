@@ -39,36 +39,10 @@ jobs:
           resource-group: default_resource_group
       - run: |
           kubectl create namespace githubrg
+      - run: |
+          kubectl apply -f pod.yaml
 
 
-#    outputs:
-#      tag: ${{ steps.checkout.outputs.tag }}
-#  get-the-files:
-#    needs:
-#      - build
-#    runs-on: ubuntu-latest
-#    steps:
-#
-#      - name: running a custom scrip
-#        run: |
-#          ls -al
-##       - name: Log in with Azure action
-##         uses: azure/login@v1
-##         with:
-##           creds: '${{ secrets.AZURE_CREDENTIALS }}'
-##       - uses: azure/aks-set-context@v1
-##         with:
-##           creds: '${{ secrets.AZURE_CREDENTIALS }}'
-##           cluster-name: githubactionaks
-##           resource-group: githubRGACTION
-#
-##       - run: |
-##           kubectl create namespace githubrg
-#
-##       #      - name: deploy app
-##       - run: |
-##           kubectl apply -f .
-#      # Runs a set of commands using the runners shell
   get-the-multiline-task:
     needs:
       - build
