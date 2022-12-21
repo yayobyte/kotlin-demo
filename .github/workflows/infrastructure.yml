@@ -33,7 +33,7 @@ jobs:
           curl -SL https://releases.hashicorp.com/terraform/1.2.5/terraform_1.2.5_linux_amd64.zip --output terraform_linux.zip
           ls -a
           echo "unzipping..."
-          unzip -n terraform_linux.zip
+          unzip -n terraform_linux.zip -d terraform_linux
           echo "success unzipping!"
           ls -a
           echo "moving..."
