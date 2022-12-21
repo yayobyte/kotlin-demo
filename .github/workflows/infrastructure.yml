@@ -34,7 +34,7 @@ jobs:
           unzip -o terraform.zip
           mv terraform /usr/local/bin/
           terraform --version
-          rm  terraform.zip
+          rm -r terraform.zip
 
       - name: Install tflink
         run: |
