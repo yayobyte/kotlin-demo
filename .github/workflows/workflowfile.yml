@@ -39,18 +39,17 @@ jobs:
           resource-group: default_resource_group
       - run: |
           kubectl create namespace githubrg
+        catch:
+          - error
       - name: Run CTL Apply
-        if: always()
+        if: success()
         run: |
           kubectl apply -f pod.yaml
 
       - name: get the dependency
         run: ${{ needs.build.outputs.tag}}
-        catch:
-          - error
 
       - name: Run a multi-line script
-        if: success()
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
