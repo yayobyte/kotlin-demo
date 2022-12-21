@@ -32,8 +32,14 @@ jobs:
           # Download and install the latest version of Terraform
           curl -SL https://releases.hashicorp.com/terraform/1.2.5/terraform_1.2.5_linux_amd64.zip --output terraform_linux.zip
           ls -a
+          echo "unzipping..."
           unzip -n terraform_linux.zip
+          echo "success unzipping!"
+          ls -a
+          echo "moving..."
           mv terraform_linux /usr/local/bin/
+          echo "success moving!"
+          ls -a
           terraform --version
           rm -r terraform_linux.zip
 
