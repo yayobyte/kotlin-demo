@@ -37,12 +37,7 @@ jobs:
           creds: '{"clientId":"${{ secrets.CLIENT_ID }}","clientSecret":"${{ secrets.CLIENT_SECRET }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.TENANT_ID }}"}'
           cluster-name: githubactionskube
           resource-group: default_resource_group
-      - name: Create namespace in azure
-        if: success()
-        run: |
-          kubectl create namespace githubrg
-        catch:
-          - error
+
       - name: Run CTL Apply
         if: success()
         run: |
