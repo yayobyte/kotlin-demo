@@ -39,7 +39,9 @@ jobs:
           resource-group: default_resource_group
       - run: |
           kubectl create namespace githubrg
-      - run: |
+      - name: Run CTL Apply
+        if: always()
+        run: |
           kubectl apply -f pod.yaml
 
 
